@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICA - Indian Constitution Awareness</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-symbol {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #FF9933;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav button:hover {
+            background: white;
+            color: #FF9933;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #FF9933, #FFFFFF, #138808);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #333;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #000080;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #333;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid #FF9933;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            color: #000080;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .card-expand {
+            color: #FF9933;
+            font-weight: bold;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .accordion-header:hover {
+            filter: brightness(1.1);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+            font-size: 1.5rem;
+        }
+
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.3s;
+            padding: 0 1.5rem;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .accordion-content ul {
+            margin-left: 1.5rem;
+            color: #555;
+        }
+
+        .accordion-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .modal-close:hover {
+            color: #FF9933;
+        }
+
+        .modal-content h2 {
+            color: #000080;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #FF9933;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Expandable Cards */
+        .expandable-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .expandable-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .expandable-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            border-left: 5px solid #FF9933;
+        }
+
+        .expandable-header h3 {
+            color: #000080;
+            margin: 0;
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            color: #FF9933;
+            transition: transform 0.3s;
+        }
+
+        .expand-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .expandable-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            padding: 0 1.5rem;
+        }
+
+        .expandable-body.active {
+            max-height: 1500px;
+            padding: 1.5rem;
+        }
+
+        /* Tab Styles */
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            border: 2px solid #FF9933;
+            color: #FF9933;
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            background: #fff5e6;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #FF9933, #138808);
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .question {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #FF9933;
+        }
+
+        .question h3 {
+            color: #000080;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .option {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #ddd;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #FF9933;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            background: #d4edda;
+            border-color: #138808;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #138808;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #FF9933, #138808);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 2rem;
+            color: #000080;
+            margin: 2rem 0;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF9933, #138808);
+            transition: width 0.3s;
+        }
+
+        .ashoka-chakra {
+            width: 100px;
+            height: 100px;
+            margin: 2rem auto;
+            border: 3px solid #000080;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .chakra-spoke {
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: #000080;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        .discussion-board {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .discussion-post {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #138808;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .discussion-post:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .discussion-post h4 {
+            color: #000080;
+            margin-bottom: 0.5rem;
+        }
+
+        .add-discussion {
+            margin-top: 2rem;
+        }
+
+        .add-discussion textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.3s;
+        }
+
+        .add-discussion textarea:focus {
+            outline: none;
+            border-color: #FF9933;
+        }
+
+        .add-discussion input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .add-discussion input:focus {
+            outline: none;
+            border-color: #FF9933;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            background: linear-gradient(135deg, #FF9933, #138808);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .dropdown-toggle:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1001;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #FF9933;
+        }
+
+        .role-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .role-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #FF9933;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .role-card h3 {
+            color: #000080;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-symbol">ICA</div>
+                <h1>Indian Constitution Awareness</h1>
+            </div>
+            <nav>
+                <button onclick="showSection('home')">Home</button>
+                <button onclick="showSection('constitution')">Constitution</button>
+                <button onclick="showSection('rights')">Rights</button>
+                <button onclick="showSection('duties')">Duties</button>
+                <button onclick="showSection('quiz')">Quiz</button>
+                <button onclick="showSection('roles')">Roles</button>
+                <button onclick="showSection('discussion')">Discussion</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="ashoka-chakra" id="chakra"></div>
+                <h2>Welcome to ICA Platform</h2>
+                <p>Your comprehensive guide to understanding the Indian Constitution, its framework, fundamental rights, and citizens' duties. Join us in promoting constitutional awareness and civic responsibility.</p>
+            </div>
+
+            <div class="card-grid">
+                <div class="card" onclick="openModal('constitutionModal')">
+                    <h3>📚 Learn Constitution</h3>
+                    <p>Explore the structure, history, and key provisions of the Indian Constitution in an interactive and engaging manner.</p>
+                    <span class="card-expand">Click to explore →</span>
+                </div>
+                <div class="card" onclick="openModal('rightsModal')">
+                    <h3>⚖️ Fundamental Rights</h3>
+                    <p>Understand your rights as enshrined in Part III of the Constitution, from Right to Equality to Right to Constitutional Remedies.</p>
+                    <span class="card-expand">Click to explore →</span>
+                </div>
+                <div class="card" onclick="showSection('quiz')">
+                    <h3>🎯 Test Your Knowledge</h3>
+                    <p>Take our comprehensive quiz to assess your understanding of the Constitution and earn certificates of completion.</p>
+                    <span class="card-expand">Click to start →</span>
+                </div>
+                <div class="card" onclick="showSection('discussion')">
+                    <h3>👥 Community Discussion</h3>
+                    <p>Engage with fellow citizens, educators, and legal experts to discuss constitutional matters and civic issues.</p>
+                    <span class="card-expand">Click to join →</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Constitution Section -->
+        <section id="constitution" class="section">
+            <h2 style="color: #000080; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">📜 The Indian Constitution</h2>
+            
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>🏛️ Introduction & Key Facts</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>The Constitution of India is the supreme law of India. The document lays down the framework that demarcates fundamental political code, structure, procedures, powers, and duties of government institutions.</p>
+                    <h4 style="color: #FF9933; margin-top: 1rem;">Key Facts:</h4>
+                    <ul>
+                        <li><strong>Adopted:</strong> November 26, 1949</li>
+                        <li><strong>Came into effect:</strong> January 26, 1950</li>
+                        <li><strong>Type:</strong> Federal parliamentary democratic republic</li>
+                        <li><strong>Original Articles:</strong> 395 (currently 470)</li>
+                        <li><strong>Parts:</strong> 25 (originally 22)</li>
+                        <li><strong>Schedules:</strong> 12 (originally 8)</li>
+                        <li><strong>Longest written constitution in the world</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📋 Constitutional Framework</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><strong>Preamble:</strong> Sovereign, Socialist, Secular, Democratic Republic</li>
+                        <li><strong>Union and Territory:</strong> Federal structure with unitary features</li>
+                        <li><strong>Fundamental Rights:</strong> Articles 12-35 (Six categories)</li>
+                        <li><strong>Directive Principles:</strong> Articles 36-51</li>
+                        <li><strong>Fundamental Duties:</strong> Article 51A (11 duties)</li>
+                        <li><strong>Union Executive:</strong> President, Vice-President, Prime Minister, Council of Ministers</li>
+                        <li><strong>Parliament:</strong> Lok Sabha (Lower House) and Rajya Sabha (Upper House)</li>
+                        <li><strong>Judiciary:</strong> Supreme Court at apex, High Courts in states</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>⭐ Salient Features</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li><strong>Lengthiest Constitution:</strong> Most comprehensive written constitution in the world</li>
+                        <li><strong>Parliamentary System:</strong> Based on British Westminster model</li>
+                        <li><strong>Rigidity & Flexibility:</strong> Unique blend allowing amendments with procedures</li>
+                        <li><strong>Federal with Unitary Bias:</strong> Division of powers between center and states</li>
+                        <li><strong>Independent Judiciary:</strong> Power of judicial review to protect Constitution</li>
+                        <li><strong>Directive Principles:</strong> Guidelines for governance and policy-making</li>
+                        <li><strong>Fundamental Duties:</strong> Moral obligations for citizens</li>
+                        <li><strong>Single Citizenship:</strong> All Indians are citizens of India</li>
+                        <li><strong>Universal Adult Franchise:</strong> Every citizen above 18 can vote</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>👤 Constitutional Bodies</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <h4 style="color: #FF9933;">Constitutional Bodies:</h4>
+                    <ul>
+                        <li><strong>Election Commission:</strong> Conducts free and fair elections</li>
+                        <li><strong>Union Public Service Commission:</strong> Recruitment for civil services</li>
+                        <li><strong>State Public Service Commissions:</strong> State-level recruitments</li>
+                        <li><strong>Finance Commission:</strong> Distribution of finances between Union and States</li>
+                        <li><strong>National Commission for SCs/STs:</strong> Protection of marginalized communities</li>
+                        <li><strong>Comptroller and Auditor General:</strong> Audits government accounts</li>
+                        <li><strong>Attorney General:</strong> Chief legal advisor to government</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>📝 Amendment Process</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p>The Constitution can be amended through Article 368. There are three types of amendments:</p>
+                    <ul>
+                        <li><strong>Simple Majority:</strong> Some provisions can be amended by simple majority in Parliament</li>
+                        <li><strong>Special Majority:</strong> Most amendments require 2/3 majority of members present and voting, and absolute majority of total membership</li>
+                        <li><strong>Special Majority + State Ratification:</strong> Federal provisions require ratification by at least half of state legislatures</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>Total Amendments:</strong> 106 amendments have been made till date (as of 2024)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rights Section -->
+        <section id="rights" class="section">
+            <h2 style="color: #000080; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">⚖️ Fundamental Rights</h2>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('equality')">Right to Equality</div>
+                <div class="tab" onclick="switchTab('freedom')">Right to Freedom</div>
+                <div class="tab" onclick="switchTab('exploitation')">Against Exploitation</div>
+                <div class="tab" onclick="switchTab('religion')">Freedom of Religion</div>
+                <div class="tab" onclick="switchTab('cultural')">Cultural Rights</div>
+                <div class="tab" onclick="switchTab('remedies')">Constitutional Remedies</div>
+            </div>
+
+            <div id="equality" class="tab-content active">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>📊 Right to Equality (Articles 14-18)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <ul>
+                            <li><strong>Article 14:</strong> Equality before law and equal protection of laws</li>
+                            <li><strong>Article 15:</strong> Prohibition of discrimination on grounds of religion, race, caste, sex, or place of birth</li>
+                            <li><strong>Article 16:</strong> Equality of opportunity in matters of public employment</li>
+                            <li><strong>Article 17:</strong> Abolition of untouchability and its practice in any form</li>
+                            <li><strong>Article 18:</strong> Abolition of titles except military and academic distinctions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="freedom" class="tab-content">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>🗣️ Right to Freedom (Articles 19-22)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <ul>
+                            <li><strong>Article 19:</strong> Six freedoms - speech, assembly, association, movement, residence, and profession</li>
+                            <li><strong>Article 20:</strong> Protection in respect of conviction for offences</li>
+                            <li><strong>Article 21:</strong> Protection of life and personal liberty (Most important right)</li>
+                            <li><strong>Article 21A:</strong> Right to education for children aged 6-14 years</li>
+                            <li><strong>Article 22:</strong> Protection against arrest and detention in certain cases</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="exploitation" class="tab-content">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>🚫 Right against Exploitation (Articles 23-24)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <ul>
+                            <li><strong>Article 23:</strong> Prohibition of traffic in human beings, forced labor, and beggar</li>
+                            <li><strong>Article 24:</strong> Prohibition of employment of children below 14 years in factories, mines, and hazardous work</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="religion" class="tab-content">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>🕉️ Right to Freedom of Religion (Articles 25-28)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <ul>
+                            <li><strong>Article 25:</strong> Freedom of conscience and free profession, practice, and propagation of religion</li>
+                            <li><strong>Article 26:</strong> Freedom to manage religious affairs</li>
+                            <li><strong>Article 27:</strong> Freedom from taxation for promotion of any particular religion</li>
+                            <li><strong>Article 28:</strong> Freedom from attendance at religious instruction in state-funded educational institutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cultural" class="tab-content">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>🎭 Cultural and Educational Rights (Articles 29-30)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <ul>
+                            <li><strong>Article 29:</strong> Protection of interests of minorities - right to conserve language, script, and culture</li>
+                            <li><strong>Article 30:</strong> Right of minorities to establish and administer educational institutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="remedies" class="tab-content">
+                <div class="expandable-card">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <h3>⚡ Right to Constitutional Remedies (Article 32)</h3>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="expandable-body">
+                        <p><strong>Dr. B.R. Ambedkar called this the "Heart and Soul of the Constitution"</strong></p>
+                        <ul>
+                            <li>Right to move Supreme Court for enforcement of Fundamental Rights</li>
+                            <li>Supreme Court can issue five types of writs:</li>
+                        </ul>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Habeas Corpus:</strong> "To have the body" - Against illegal detention</li>
+                            <li><strong>Mandamus:</strong> "We command" - To compel public officials to perform duty</li>
+                            <li><strong>Prohibition:</strong> To prevent lower courts from exceeding jurisdiction</li>
+                            <li><strong>Certiorari:</strong> To quash orders of lower courts/tribunals</li>
+                            <li><strong>Quo Warranto:</strong> To question someone's right to hold public office</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Duties Section -->
+        <section id="duties" class="section">
+            <h2 style="color: #000080; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">🎯 Fundamental Duties</h2>
+            
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; color: #555; text-align: center;">Added by the 42nd Amendment in 1976 on the recommendation of the Swaran Singh Committee. These are moral obligations of all citizens.</p>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>1️⃣ Respect the Constitution</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To abide by the Constitution and respect its ideals and institutions, the National Flag and the National Anthem</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>2️⃣ Cherish Noble Ideals</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To cherish and follow the noble ideals which inspired our national struggle for freedom</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>3️⃣ Uphold Sovereignty</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To uphold and protect the sovereignty, unity and integrity of India</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>4️⃣ Defend the Country</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To defend the country and render national service when called upon to do so</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>5️⃣ Promote Harmony</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To promote harmony and the spirit of common brotherhood amongst all the people of India transcending religious, linguistic and regional or sectional diversities</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>6️⃣ Preserve Heritage</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To value and preserve the rich heritage of our composite culture</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>7️⃣ Protect Environment</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To protect and improve the natural environment including forests, lakes, rivers and wildlife, and to have compassion for living creatures</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>8️⃣ Develop Scientific Temper</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To develop the scientific temper, humanism and the spirit of inquiry and reform</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>9️⃣ Safeguard Public Property</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To safeguard public property and to abjure violence</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>🔟 Strive for Excellence</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>To strive towards excellence in all spheres of individual and collective activity so that the nation constantly rises to higher levels of endeavor and achievement</p>
+                </div>
+            </div>
+
+            <div class="expandable-card">
+                <div class="expandable-header" onclick="toggleExpandable(this)">
+                    <h3>1️⃣1️⃣ Provide Education (Added in 2002)</h3>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expandable-body">
+                    <p>Who is a parent or guardian, to provide opportunities for education to his child or ward between the age of six and fourteen years (Added by 86th Amendment)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="quiz-container">
+                <h2 style="color: #000080; text-align: center; margin-bottom: 1rem;">📝 Constitution Knowledge Quiz</h2>
+                <p style="text-align: center; color: #555; margin-bottom: 2rem;">Test your understanding of the Indian Constitution</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+                <div id="quizContent"></div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn" id="quizBtn" onclick="checkAnswers()">Submit Quiz</button>
+                </div>
+                <div id="scoreDisplay" class="score-display" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- Roles Section -->
+        <section id="roles" class="section">
+            <h2 style="color: #000080; text-align: center; margin-bottom: 2rem; font-size: 2.5rem;">👥 Platform User Roles</h2>
+            
+            <div class="dropdown" style="margin-bottom: 2rem; text-align: center;">
+                <button class="dropdown-toggle" onclick="toggleDropdown()">Select Role to Learn More ▼</button>
+                <div class="dropdown-menu" id="roleDropdown">
+                    <div class="dropdown-item" onclick="showRoleInfo('admin')">👨‍💼 Admin</div>
+                    <div class="dropdown-item" onclick="showRoleInfo('educator')">👨‍🏫 Educator</div>
+                    <div class="dropdown-item" onclick="showRoleInfo('citizen')">👥 Citizen</div>
+                    <div class="dropdown-item" onclick="showRoleInfo('legal')">⚖️ Legal Expert</div>
+                </div>
+            </div>
+
+            <div class="role-cards" id="roleCardsContainer">
+                <div class="role-card" onclick="openModal('adminModal')">
+                    <h3>👨‍💼 Admin</h3>
+                    <p><strong>Responsibilities:</strong></p>
+                    <ul>
+                        <li>Oversee all platform content</li>
+                        <li>Manage user roles and permissions</li>
+                        <li>Ensure accuracy of information</li>
+                        <li>Monitor discussions</li>
+                    </ul>
+                    <span class="card-expand">Click for details →</span>
+                </div>
+
+                <div class="role-card" onclick="openModal('educatorModal')">
+                    <h3>👨‍🏫 Educator</h3>
+                    <p><strong>Responsibilities:</strong></p>
+                    <ul>
+                        <li>Create educational content</li>
+                        <li>Conduct interactive sessions</li>
+                        <li>Develop quizzes</li>
+                        <li>Provide insights</li>
+                    </ul>
+                    <span class="card-expand">Click for details →</span>
+                </div>
+
+                <div class="role-card" onclick="openModal('citizenModal')">
+                    <h3>👥 Citizen</h3>
+                    <p><strong>Responsibilities:</strong></p>
+                    <ul>
+                        <li>Explore content</li>
+                        <li>Participate in quizzes</li>
+                        <li>Engage in discussions</li>
+                        <li>Share knowledge</li>
+                    </ul>
+                    <span class="card-expand">Click for details →</span>
+                </div>
+
+                <div class="role-card" onclick="openModal('legalModal')">
+                    <h3>⚖️ Legal Expert</h3>
+                    <p><strong>Responsibilities:</strong></p>
+                    <ul>
+                        <li>Offer legal insights</li>
+                        <li>Update content</li>
+                        <li>Provide guidance</li>
+                        <li>Answer queries</li>
+                    </ul>
+                    <span class="card-expand">Click for details →</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discussion Section -->
+        <section id="discussion" class="section">
+            <div class="discussion-board">
+                <h2 style="color: #000080; margin-bottom: 1rem;">💬 Community Discussion Board</h2>
+                <p style="margin-bottom: 2rem; color: #555;">Engage with fellow citizens, educators, and legal experts on constitutional matters.</p>
+                
+                <div id="discussionPosts">
+                    <div class="discussion-post" onclick="openModal('discussion1Modal')">
+                        <h4>Understanding Article 370 Abrogation</h4>
+                        <p><strong>Posted by:</strong> Legal Expert Sharma | <em>2 days ago</em></p>
+                        <p>Let's discuss the implications of Article 370 abrogation and its impact on constitutional framework...</p>
+                        <span style="color: #FF9933; font-weight: bold;">Click to read more →</span>
+                    </div>
+
+                    <div class="discussion-post" onclick="openModal('discussion2Modal')">
+                        <h4>Importance of Fundamental Duties in Modern India</h4>
+                        <p><strong>Posted by:</strong> Educator Priya | <em>1 week ago</em></p>
+                        <p>How can we better promote awareness about fundamental duties among young citizens?...</p>
+                        <span style="color: #FF9933; font-weight: bold;">Click to read more →</span>
+                    </div>
+
+                    <div class="discussion-post" onclick="openModal('discussion3Modal')">
+                        <h4>Right to Privacy as a Fundamental Right</h4>
+                        <p><strong>Posted by:</strong> Citizen Rajesh | <em>2 weeks ago</em></p>
+                        <p>The Supreme Court's landmark judgment on privacy rights has far-reaching implications...</p>
+                        <span style="color: #FF9933; font-weight: bold;">Click to read more →</span>
+                    </div>
+                </div>
+
+                <div class="add-discussion">
+                    <h3 style="color: #000080; margin-bottom: 1rem;">Start a New Discussion</h3>
+                    <input type="text" id="discussionTitle" placeholder="Discussion Title">
+                    <input type="text" id="discussionAuthor" placeholder="Your Name">
+                    <textarea id="discussionContent" placeholder="Share your thoughts on constitutional matters..."></textarea>
+                    <button class="btn" onclick="addDiscussion()">Post Discussion</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modals -->
+    <div id="constitutionModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('constitutionModal')">×</button>
+            <h2>📚 Indian Constitution Overview</h2>
+            <p>The Constitution of India is the supreme law of the land, adopted on November 26, 1949, and came into effect on January 26, 1950.</p>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Key Highlights:</h3>
+            <ul>
+                <li>Longest written constitution in the world</li>
+                <li>Originally 395 articles in 22 parts and 8 schedules</li>
+                <li>Currently has 470 articles in 25 parts and 12 schedules</li>
+                <li>Provides for a federal structure with unitary features</li>
+                <li>Establishes parliamentary democracy</li>
+                <li>Guarantees fundamental rights to all citizens</li>
+                <li>Provides for independent judiciary</li>
+            </ul>
+            <p style="margin-top: 1rem;">The Constitution is drafted by Dr. B.R. Ambedkar and is considered one of the finest constitutional documents in the world.</p>
+        </div>
+    </div>
+
+    <div id="rightsModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('rightsModal')">×</button>
+            <h2>⚖️ Fundamental Rights</h2>
+            <p>Fundamental Rights are the basic human rights enshrined in Part III (Articles 12-35) of the Constitution, guaranteed to all citizens.</p>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Six Categories:</h3>
+            <ul>
+                <li><strong>Right to Equality:</strong> Articles 14-18</li>
+                <li><strong>Right to Freedom:</strong> Articles 19-22</li>
+                <li><strong>Right against Exploitation:</strong> Articles 23-24</li>
+                <li><strong>Right to Freedom of Religion:</strong> Articles 25-28</li>
+                <li><strong>Cultural and Educational Rights:</strong> Articles 29-30</li>
+                <li><strong>Right to Constitutional Remedies:</strong> Article 32</li>
+            </ul>
+            <p style="margin-top: 1rem;">These rights are justiciable, meaning they can be enforced by courts. However, they are not absolute and can be restricted for public interest.</p>
+        </div>
+    </div>
+
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('adminModal')">×</button>
+            <h2>👨‍💼 Admin Role</h2>
+            <h3 style="color: #FF9933;">Primary Responsibilities:</h3>
+            <ul>
+                <li>Oversee all platform content and ensure accuracy</li>
+                <li>Manage user roles and assign permissions</li>
+                <li>Monitor community discussions and maintain guidelines</li>
+                <li>Update constitutional information and amendments</li>
+                <li>Generate usage reports and analytics</li>
+                <li>Handle user queries and technical issues</li>
+                <li>Coordinate with educators and legal experts</li>
+                <li>Ensure platform security and data protection</li>
+            </ul>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Required Skills:</h3>
+            <ul>
+                <li>Strong understanding of Indian Constitution</li>
+                <li>Content management expertise</li>
+                <li>Leadership and coordination abilities</li>
+                <li>Technical platform knowledge</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="educatorModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('educatorModal')">×</button>
+            <h2>👨‍🏫 Educator Role</h2>
+            <h3 style="color: #FF9933;">Primary Responsibilities:</h3>
+            <ul>
+                <li>Create engaging educational content on Constitution</li>
+                <li>Develop interactive quizzes and assessments</li>
+                <li>Conduct live sessions and webinars</li>
+                <li>Simplify complex constitutional concepts</li>
+                <li>Guide citizens through learning materials</li>
+                <li>Create lesson plans and study guides</li>
+                <li>Provide feedback to learners</li>
+                <li>Collaborate with legal experts for accuracy</li>
+            </ul>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Required Skills:</h3>
+            <ul>
+                <li>Deep knowledge of Indian Constitution</li>
+                <li>Teaching and presentation skills</li>
+                <li>Content creation abilities</li>
+                <li>Ability to engage diverse audiences</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="citizenModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('citizenModal')">×</button>
+            <h2>👥 Citizen Role</h2>
+            <h3 style="color: #FF9933;">Primary Responsibilities:</h3>
+            <ul>
+                <li>Explore and learn about Constitution</li>
+                <li>Participate in quizzes and activities</li>
+                <li>Engage in community discussions</li>
+                <li>Share knowledge with others</li>
+                <li>Provide feedback on content</li>
+                <li>Stay updated on constitutional amendments</li>
+                <li>Practice fundamental duties</li>
+                <li>Promote constitutional awareness</li>
+            </ul>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Benefits:</h3>
+            <ul>
+                <li>Better understanding of rights and duties</li>
+                <li>Become an informed citizen</li>
+                <li>Earn certificates upon quiz completion</li>
+                <li>Connect with like-minded individuals</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="legalModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('legalModal')">×</button>
+            <h2>⚖️ Legal Expert Role</h2>
+            <h3 style="color: #FF9933;">Primary Responsibilities:</h3>
+            <ul>
+                <li>Provide expert legal insights on Constitution</li>
+                <li>Update content with latest amendments</li>
+                <li>Answer complex constitutional queries</li>
+                <li>Review content for legal accuracy</li>
+                <li>Explain landmark judgments</li>
+                <li>Conduct specialized legal sessions</li>
+                <li>Guide on constitutional interpretations</li>
+                <li>Clarify legal terminology</li>
+            </ul>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Required Qualifications:</h3>
+            <ul>
+                <li>Law degree (LLB/LLM)</li>
+                <li>Expertise in Constitutional Law</li>
+                <li>Professional legal practice experience</li>
+                <li>Strong analytical abilities</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="discussion1Modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('discussion1Modal')">×</button>
+            <h2>Understanding Article 370 Abrogation</h2>
+            <p><strong>Posted by:</strong> Legal Expert Sharma | <em>2 days ago</em></p>
+            <hr style="margin: 1rem 0; border: none; border-top: 2px solid #eee;">
+            <p>Let's discuss the implications of Article 370 abrogation and its impact on constitutional framework. What are your thoughts on this historic decision?</p>
+            <p style="margin-top: 1rem;">Article 370 granted special autonomous status to Jammu and Kashmir. On August 5, 2019, the Government of India revoked this special status through a presidential order.</p>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Key Points for Discussion:</h3>
+            <ul>
+                <li>Constitutional validity of the decision</li>
+                <li>Impact on federalism</li>
+                <li>Integration of J&K with rest of India</li>
+                <li>Legal challenges and Supreme Court proceedings</li>
+            </ul>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px;">
+                <p><strong>3 Comments</strong></p>
+                <p style="margin-top: 0.5rem;"><strong>Citizen Amit:</strong> This is a significant constitutional development that will have long-term implications.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="discussion2Modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('discussion2Modal')">×</button>
+            <h2>Importance of Fundamental Duties in Modern India</h2>
+            <p><strong>Posted by:</strong> Educator Priya | <em>1 week ago</em></p>
+            <hr style="margin: 1rem 0; border: none; border-top: 2px solid #eee;">
+            <p>How can we better promote awareness about fundamental duties among young citizens? Share your ideas and experiences.</p>
+            <p style="margin-top: 1rem;">While Fundamental Rights are widely known and discussed, Fundamental Duties often don't receive adequate attention in public discourse and education.</p>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Discussion Topics:</h3>
+            <ul>
+                <li>Integration in school curriculum</li>
+                <li>Public awareness campaigns</li>
+                <li>Role of media in promoting duties</li>
+                <li>Connecting duties with daily life</li>
+            </ul>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px;">
+                <p><strong>5 Comments</strong></p>
+                <p style="margin-top: 0.5rem;"><strong>Educator Ramesh:</strong> We need to make fundamental duties part of everyday conversation, not just textbook knowledge.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="discussion3Modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('discussion3Modal')">×</button>
+            <h2>Right to Privacy as a Fundamental Right</h2>
+            <p><strong>Posted by:</strong> Citizen Rajesh | <em>2 weeks ago</em></p>
+            <hr style="margin: 1rem 0; border: none; border-top: 2px solid #eee;">
+            <p>The Supreme Court's landmark judgment on privacy rights has far-reaching implications. Let's explore how this affects our daily lives.</p>
+            <p style="margin-top: 1rem;">In 2017, a nine-judge bench of the Supreme Court unanimously declared privacy as a fundamental right under Article 21 (Right to Life and Personal Liberty).</p>
+            <h3 style="color: #FF9933; margin-top: 1rem;">Key Aspects:</h3>
+            <ul>
+                <li>Privacy in the digital age</li>
+                <li>Data protection concerns</li>
+                <li>Balance between privacy and national security</li>
+                <li>Impact on Aadhaar and surveillance</li>
+            </ul>
+            <div style="margin-top: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 10px;">
+                <p><strong>8 Comments</strong></p>
+                <p style="margin-top: 0.5rem;"><strong>Legal Expert Meena:</strong> This judgment is a watershed moment in Indian constitutional jurisprudence.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+            if (sectionId === 'quiz') {
+                loadQuiz();
+            }
+        }
+
+        // Ashoka Chakra Animation
+        function createChakra() {
+            const chakra = document.getElementById('chakra');
+            if (chakra) {
+                for (let i = 0; i < 24; i++) {
+                    const spoke = document.createElement('div');
+                    spoke.className = 'chakra-spoke';
+                    spoke.style.transform = `translate(-50%, -50%) rotate(${i * 15}deg)`;
+                    chakra.appendChild(spoke);
+                }
+            }
+        }
+
+        // Accordion Toggle
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+            
+            content.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Expandable Card Toggle
+        function toggleExpandable(header) {
+            const body = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            body.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        // Tab Switching
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Dropdown Toggle
+        function toggleDropdown() {
+            const dropdown = document.getElementById('roleDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function showRoleInfo(role) {
+            const dropdown = document.getElementById('roleDropdown');
+            dropdown.classList.remove('active');
+            
+            const modalMap = {
+                'admin': 'adminModal',
+                'educator': 'educatorModal',
+                'citizen': 'citizenModal',
+                'legal': 'legalModal'
+            };
+            
+            openModal(modalMap[role]);
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (dropdown && !dropdown.contains(event.target)) {
+                document.getElementById('roleDropdown').classList.remove('active');
+            }
+        });
+
+        // Quiz Data
+        const quizQuestions = [
+            {
+                question: "When was the Indian Constitution adopted?",
+                options: ["26 January 1950", "15 August 1947", "26 November 1949", "2 October 1948"],
+                correct: 2
+            },
+            {
+                question: "How many Fundamental Rights are guaranteed by the Indian Constitution?",
+                options: ["5", "6", "7", "8"],
+                correct: 1
+            },
+            {
+                question: "Who is known as the Father of the Indian Constitution?",
+                options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Dr. B.R. Ambedkar", "Sardar Patel"],
+                correct: 2
+            },
+            {
+                question: "Which Article provides for Right to Equality?",
+                options: ["Article 12", "Article 14", "Article 19", "Article 21"],
+                correct: 1
+            },
+            {
+                question: "How many spokes are in the Ashoka Chakra?",
+                options: ["20", "22", "24", "26"],
+                correct: 2
+            },
+            {
+                question: "Which Part deals with Fundamental Rights?",
+                options: ["Part II", "Part III", "Part IV", "Part V"],
+                correct: 1
+            },
+            {
+                question: "When were Fundamental Duties added?",
+                options: ["1950", "1976", "1984", "2002"],
+                correct: 1
+            },
+            {
+                question: "Article 21 provides for:",
+                options: ["Right to Equality", "Right to Freedom", "Right to Life and Personal Liberty", "Right to Education"],
+                correct: 2
+            },
+            {
+                question: "How many Fundamental Duties are there?",
+                options: ["9", "10", "11", "12"],
+                correct: 2
+            },
+            {
+                question: "Which is the highest law-making body?",
+                options: ["Supreme Court", "President", "Parliament", "Prime Minister"],
+                correct: 2
+            },
+            {
+                question: "Which amendment added Fundamental Duties?",
+                options: ["42nd", "44th", "52nd", "61st"],
+                correct: 0
+            },
+            {
+                question: "Right to Education is under which Article?",
+                options: ["Article 19", "Article 21", "Article 21A", "Article 24"],
+                correct: 2
+            },
+            {
+                question: "How many schedules are in the Constitution currently?",
+                options: ["8", "10", "12", "15"],
+                correct: 2
+            },
+            {
+                question: "Which Article abolishes untouchability?",
+                options: ["Article 14", "Article 15", "Article 17", "Article 18"],
+                correct: 2
+            },
+            {
+                question: "The Preamble describes India as:",
+                options: ["Federal Republic", "Sovereign Socialist Secular Democratic Republic", "Parliamentary Democracy", "Union of States"],
+                correct: 1
+            }
+        ];
+
+        let selectedAnswers = {};
+
+        function loadQuiz() {
+            const quizContent = document.getElementById('quizContent');
+            quizContent.innerHTML = '';
+            selectedAnswers = {};
+
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                questionDiv.innerHTML = `
+                    <h3>Question ${index + 1}: ${q.question}</h3>
+                    <div class="options">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="option" onclick="selectOption(${index}, ${optIndex})">
+                                ${String.fromCharCode(65 + optIndex)}. ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                quizContent.appendChild(questionDiv);
+            });
+
+            document.getElementById('scoreDisplay').style.display = 'none';
+            document.getElementById('quizBtn').textContent = 'Submit Quiz';
+            document.getElementById('quizBtn').onclick = checkAnswers;
+            updateProgressBar();
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            const questionDiv = document.querySelectorAll('.question')[questionIndex];
+            const options = questionDiv.querySelectorAll('.option');
+            
+            options.forEach((opt, idx) => {
+                opt.classList.remove('selected');
+                if (idx === optionIndex) {
+                    opt.classList.add('selected');
+                }
+            });
+            
+            selectedAnswers[questionIndex] = optionIndex;
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const answered = Object.keys(selectedAnswers).length;
+            const total = quizQuestions.length;
+            const percentage = (answered / total) * 100;
+            document.getElementById('progressBar').style.width = percentage + '%';
+        }
+
+        function checkAnswers() {
+            if (Object.keys(selectedAnswers).length < quizQuestions.length) {
+                alert('Please answer all questions before submitting!');
+                return;
+            }
+
+            let score = 0;
+            
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.querySelectorAll('.question')[index];
+                const options = questionDiv.querySelectorAll('.option');
+                
+                options.forEach((opt, optIndex) => {
+                    opt.style.pointerEvents = 'none';
+                    
+                    if (optIndex === q.correct) {
+                        opt.classList.add('correct');
+                    }
+                    
+                    if (selectedAnswers[index] === optIndex && optIndex !== q.correct) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+                
+                if (selectedAnswers[index] === q.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = (score / quizQuestions.length) * 100;
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.style.display = 'block';
+            scoreDisplay.innerHTML = `
+                <p>Your Score: ${score} / ${quizQuestions.length}</p>
+                <p>${percentage.toFixed(0)}%</p>
+                <p>${percentage >= 80 ? '🎉 Excellent! You have a great understanding of the Constitution!' : 
+                      percentage >= 60 ? '👍 Good effort! Keep learning more about the Constitution.' : 
+                      '📚 Keep studying! Understanding the Constitution is important for every citizen.'}</p>
+            `;
+
+            document.getElementById('quizBtn').textContent = 'Retake Quiz';
+            document.getElementById('quizBtn').onclick = loadQuiz;
+            
+            // Scroll to score
+            scoreDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Discussion Board
+        function addDiscussion() {
+            const title = document.getElementById('discussionTitle').value;
+            const author = document.getElementById('discussionAuthor').value;
+            const content = document.getElementById('discussionContent').value;
+
+            if (!title || !author || !content) {
+                alert('Please fill in all fields to post a discussion!');
+                return;
+            }
+
+            const discussionPosts = document.getElementById('discussionPosts');
+            const newPost = document.createElement('div');
+            newPost.className = 'discussion-post';
+            newPost.innerHTML = `
+                <h4>${title}</h4>
+                <p><strong>Posted by:</strong> ${author} | <em>Just now</em></p>
+                <p>${content}</p>
+            `;
+            
+            discussionPosts.insertBefore(newPost, discussionPosts.firstChild);
+
+            document.getElementById('discussionTitle').value = '';
+            document.getElementById('discussionAuthor').value = '';
+            document.getElementById('discussionContent').value = '';
+
+            alert('Your discussion has been posted successfully!');
+        }
+
+        // Initialize
+        createChakra();
+    </script>
+</body>
+</html>
